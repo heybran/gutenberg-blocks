@@ -1,0 +1,39 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.product-image-grid {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.product-image-grid img {
+	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.product-image-grid__item:first-child {
+	grid-column: span 2;
+	grid-row: span 2;
+}
+
+@media screen and (max-width: 768px) {
+	.product-image-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.product-image-grid__item:first-child {
+		grid-column: span 1;
+		grid-row: span 1;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.product-image-grid {
+		grid-template-columns: 1fr;
+	}
+}
