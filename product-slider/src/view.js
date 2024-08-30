@@ -20,17 +20,44 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
 
-const mainImage = document.getElementById("main-image");
-const images = document.querySelectorAll(".product__image");
+class ProductSlider {
+	constructor({ mainImageSelector, thumbnailSelector, thumbnailActiveClass, containerSelector }) {
+		this.mainImageSelector = mainImageSelector;
+		this.thumbnailSelector = thumbnailSelector;
+		this.thumbnailActiveClass = thumbnailActiveClass;
+		this.containerSelector = containerSelector;
+	}
 
-images.forEach((image) => {
-	image.addEventListener("click", (event) => {
-		mainImage.src = event.target.src;
+	static create({ mainImageSelector, thumbnailSelector, thumbnailActiveClass, containerSelector }) {
+		return new ProductSlider({
+			mainImageSelector,
+			thumbnailSelector,
+			thumbnailActiveClass,
+			containerSelector,
+		});
+	}
 
-		document
-			.querySelector(".product__image--active")
-			.classList.remove("product__image--active");
+	run() {
+		const mainImage = document.querySelector(this.mainImageSelector);
+		const thumbnails = document.querySelectorAll(this.thumbnailSelector);
+		const container = document.querySelector(this.containerSelector);
+		if (!thumbnails.length) return;
 
-		event.target.classList.add("product__image--active");
-	});
-});
+		thumbnails.forEach((thumbnail) => {
+			thumbnail.addEventListener("click", (event) => {
+				mainImage.src = event.target.src;
+				container
+					.querySelector(`.${this.thumbnailActiveClass}`)
+					.classList.remove(this.thumbnailActiveClass);
+				thumbnail.classList.add(this.thumbnailActiveClass);
+			});
+		});
+	}
+}
+
+ProductSlider.create({
+	mainImageSelector: ".product-slider__main-image",
+	thumbnailSelector: ".product-slider__thumbnail",
+	thumbnailActiveClass: "product-slider__thumbnail--active",
+	containerSelector: ".product-slider", 
+}).run();
