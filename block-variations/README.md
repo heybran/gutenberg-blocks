@@ -1,0 +1,3 @@
+This `BlockVariations` plugin allows me to add custom variations to existing WordPress core blocks with codes. These variations provide predefined configurations and styles for specific use cases, making it easier and faster to create custom layouts within your posts and pages.
+
+I made this plugin mainly to add block variations to my personal projects, but you can borrow the ideas and create your own plugin to fit your projects.

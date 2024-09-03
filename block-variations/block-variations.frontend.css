@@ -1,0 +1,4 @@
+.product-hero-grid {
+	display: grid;
+	grid-template-columns: 7.5fr 2.5fr !important;
+}
