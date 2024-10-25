@@ -9,6 +9,7 @@ import {
 	FlexBlock,
 	FlexItem,
 	ToggleControl,
+	RadioControl,
 } from "@wordpress/components";
 import {
 	useBlockProps,
@@ -21,7 +22,7 @@ import "./editor.css";
 
 export default function Edit(props) {
 	const {
-		attributes: { items, thumbnailsPosition },
+		attributes: { items, thumbnailsPosition, hasBorder },
 		setAttributes,
 	} = props;
 	const ALLOWED_MEDIA_TYPES = ["image"];
@@ -34,20 +35,26 @@ export default function Edit(props) {
 		});
 	};
 
+	const radioOptions = [
+		{ label: 'Left', value: 'left' },
+		{ label: 'Bottom', value: 'bottom' },
+	];
+
 	return (
 		<div {...useBlockProps()}>
 			<InspectorControls>
 				<PanelBody title={__("Settings")}>
-					<PanelRow>
-						<ToggleControl
-							__nextHasNoMarginBottom
-							label={__('Thumbnails Position')}
-							checked={thumbnailsPosition === "left"}
-							onChange={(value) => {
-								setAttributes({ thumbnailsPosition: !!value ? "left" : "right" });
-							}}
-						/>
-					</PanelRow>
+					<RadioControl
+						label={__('Thumbnails Position')}
+						selected={thumbnailsPosition}
+						options={radioOptions}
+						onChange={(thumbnailsPosition) => setAttributes({ thumbnailsPosition })}
+					/>
+					<ToggleControl
+						label={__("Show Border")}
+						checked={hasBorder}
+						onChange={(hasBorder) => setAttributes({ hasBorder })}
+					/>
 					{items.map((item, index) => (
 						<PanelRow key={index}>
 							<MediaUploadCheck>

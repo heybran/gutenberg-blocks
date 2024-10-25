@@ -45,7 +45,7 @@ class ProductSlider {
 
 		thumbnails.forEach((thumbnail) => {
 			thumbnail.addEventListener("click", (event) => {
-				mainImage.src = event.target.src;
+				mainImage.src = thumbnail.querySelector("img").src;
 				container
 					.querySelector(`.${this.thumbnailActiveClass}`)
 					.classList.remove(this.thumbnailActiveClass);

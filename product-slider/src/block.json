@@ -18,6 +18,10 @@
 		"thumbnailsPosition": {
 			"type": "string",
 			"default": "left"
+		},
+		"hasBorder": {
+			"type": "boolean",
+			"default": "true"
 		}
 	},
 	"textdomain": "product-slider",
